@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "tar": "^7.1.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
+  }
+}
