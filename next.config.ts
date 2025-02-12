@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    appDir: true, // Required for Next.js App Router (Next.js 13+)
+    // appDir: true, // Required for Next.js App Router (Next.js 13+)
   },
 };
 
