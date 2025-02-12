@@ -31,20 +31,25 @@ const StreamClientProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!isLoaded || !user) return;
 
-    const client = new StreamVideoClient({
-      apiKey: API_KEY!,
-      user: {
-        id: user.id,
-        name: user.username || user.id,
-        image: user.imageUrl,
-      },
-      tokenProvider,
-    });
+    const initClient = async () => {
+      const client = new StreamVideoClient({
+        apiKey: API_KEY!,
+        user: {
+          id: user.id,
+          name: user.username || user.id,
+          image: user.imageUrl,
+        },
+        tokenProvider,
+      });
 
-    setVideoClient(client);
+      setVideoClient(client);
+    };
 
-    // Cleanup function to disconnect client on unmount
-    return () => client.disconnectUser();
+    initClient();
+
+    return () => {
+      videoClient?.disconnectUser();
+    };
   }, [user, isLoaded]);
 
   if (!videoClient) return <Loader />;
